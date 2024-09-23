@@ -12,14 +12,14 @@ users = User.create!([
   { email: 'darian@example.com', password: 'password123' },
   { email: 'ndi@example.com', password: 'password123' }
 ])
-
+puts "Users are created"
 # Create Cars
 cars = Car.create!([
-  { name: 'Model S', brand: 'Tesla', price_per_day: 200.0, category: 'Electric' },
-  { name: 'Civic', brand: 'Honda', price_per_day: 50.0, category: 'Sedan' },
-  { name: 'F-150', brand: 'Ford', price_per_day: 70.0, category: 'Truck' },
-  { name: 'Corolla', brand: 'Toyota', price_per_day: 40.0, category: 'Sedan' },
-  { name: 'Charger', brand: 'Dodge', price_per_day: 90.0, category: 'Muscle' }
+  { name: 'Model S', brand: 'Tesla', price_per_day: 200.0, category: 'Electric', user: users[0]},
+  { name: 'Civic', brand: 'Honda', price_per_day: 50.0, category: 'Sedan', user: users[1] },
+  { name: 'F-150', brand: 'Ford', price_per_day: 70.0, category: 'Truck', user: users[2] },
+  { name: 'Corolla', brand: 'Toyota', price_per_day: 40.0, category: 'Sedan', user: users[0] },
+  { name: 'Charger', brand: 'Dodge', price_per_day: 90.0, category: 'Muscle', user: users[1] }
 ])
 
 # Create Bookings
