@@ -5,3 +5,13 @@
 <ul><li><%=link_to car.name, car_path(car) %></li>
 </ul>
 <% end %>
+
+<%= form_with model: @car do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :brand %>
+  <%= f.text_field :price_per_day %>
+  <%= f.text_field :address %>
+  <%= f.label :rating %>
+  <%= f.number_field :rating %>
+  <%= f.submit %>
+<% end %>

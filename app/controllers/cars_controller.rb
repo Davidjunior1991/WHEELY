@@ -7,4 +7,9 @@ class CarsController < ApplicationController
     @car = Car.new(params[:car])
    @car.save
   end
+
+  private
+  def car_params
+    params.require(:car).permit(:name, :brand, :category)
+  end
 end
