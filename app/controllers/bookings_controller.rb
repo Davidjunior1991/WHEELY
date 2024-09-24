@@ -1,8 +1,8 @@
 class BookingsController < ApplicationController
-
-  def index
-
-  end
+    def index
+      @user_bookings = Booking.where(user: current_user) 
+      @user_cars = Car.where(user: current_user) 
+     end
 
   def new
     @booking = Booking.new
