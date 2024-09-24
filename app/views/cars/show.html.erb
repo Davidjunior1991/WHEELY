@@ -1,3 +1,6 @@
-<%= @car.name %>
 
-<%= link_to "create booking", new_car_booking_path(@car), class:"btn btn-success"  %>
+<%= @car.name %>
+<hr>
+<% unless @car.user == current_user %>
+  <%= link_to "create booking", new_car_booking_path(@car), class:"btn btn-success" %>
+<% end %>

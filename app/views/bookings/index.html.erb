@@ -1,26 +1,35 @@
 <h1>My Bookings</h1>
 
-<h2>Your Booked Cars</h2>
-<% if @user_bookings.present? %>
+<h2>Cars i want to book</h2>
+<% if @bookings.present? %>
   <ul>
-    <% @user_bookings.each do |booking| %>
-      <li>
-        <strong><%= booking.car.name %></strong> - <%= booking.car.category %> (Booked on: <%= booking.date if booking.date %>)
-      </li>
+    <% @bookings.each do |booking| %>
+      <% if booking.user == current_user %>
+        <li>
+          <strong><%= booking.car.name %></strong> - <%= booking.status %> (Booked on: <%= booking.date if booking.date %>)
+        </li>
+      <% end %>
     <% end %>
   </ul>
 <% else %>
   <p>You have no bookings.</p>
 <% end %>
 
-<h2>Your Cars</h2>
-<% if @user_cars.present? %>
+<h2>Cars im booking out</h2>
+<% if @bookings.present? %>
   <ul>
-    <% @user_cars.each do |car| %>
-      <li>
-        <strong><%= car.name %></strong> - <%= car.category %>
-        <%= link_to 'Manage Bookings', bookings_path(car_id: car.id) %>
-      </li>
+    <% @bookings.each do |booking| %>
+      <% if booking.car.user == current_user %>
+        <li>
+          <strong><%= booking.car.name %></strong> - <%= booking.car.category %>
+          <% if booking.status == "pending" %>
+            <%= link_to "ACCEPT", accept_booking_path(booking), data: { turbo_method: :patch }  %>
+            <%= link_to "DECLINE", decline_booking_path(booking), data: { turbo_method: :patch } %>
+            <% else %>
+            <%= booking.status %>
+            <% end %>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 <% else %>
