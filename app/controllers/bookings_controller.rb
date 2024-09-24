@@ -1,9 +1,10 @@
 class BookingsController < ApplicationController
-    def index
-      raise
-      @user_bookings = Booking.where(car.user = current_user) 
-      @user_cars = Car.where(user = current_user) 
-     end
+  before_action :set_booking, only: [:accept, :decline]
+
+  def index
+    # @user_bookings = Booking.where(car.user = current_user)
+    @bookings = Booking.all
+  end
 
   def new
     @booking = Booking.new
@@ -16,27 +17,32 @@ class BookingsController < ApplicationController
     @booking.car = @car
     @booking.user = current_user
     @booking.status = "pending"
-    # raise
+
     if @booking.save!
-      redirect_to car_path(@car)
+      redirect_to bookings_path
     else
       render :new, status: :unprocessable_entity
     end
   end
 
- def edit
+  def accept
+    @booking.update(status: "approved")
+    @booking.car = true
+    redirect_to bookings_path, notice: "Booking approved."
   end
 
-  def update
+  def decline
+    @booking.update(status: "declined")
+    redirect_to bookings_path, notice: "Booking declined."
   end
 
   private
-
 
   def booking_params
     params.require(:booking).permit(:date, :duration)
   end
 
-
-
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
 end
