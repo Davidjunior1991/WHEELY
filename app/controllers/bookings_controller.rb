@@ -1,8 +1,8 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:accept, :decline]
     def index
-      @user_bookings = Booking.where(user: current_user)
-      @user_cars = Car.where(user: current_user)
+      @user_bookings = Booking.where(car.user = current_user)
+      @user_cars = Car.where(user = current_user)
      end
 
   def new
