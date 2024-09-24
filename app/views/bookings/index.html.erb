@@ -5,7 +5,7 @@
   <ul>
     <% @user_bookings.each do |booking| %>
       <li>
-        <strong><%= booking.car.name %></strong> - <%= booking.car.model %> (Booked on: <%= booking.booking_date.strftime("%B %d, %Y") if booking.booking_date %>)
+        <strong><%= booking.car.name %></strong> - <%= booking.car.category %> (Booked on: <%= booking.date if booking.date %>)
       </li>
     <% end %>
   </ul>
@@ -18,7 +18,7 @@
   <ul>
     <% @user_cars.each do |car| %>
       <li>
-        <strong><%= car.name %></strong> - <%= car.model %>
+        <strong><%= car.name %></strong> - <%= car.category %>
         <%= link_to 'Manage Bookings', bookings_path(car_id: car.id) %> 
       </li>
     <% end %>
