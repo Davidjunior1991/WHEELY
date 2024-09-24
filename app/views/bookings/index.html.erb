@@ -19,10 +19,13 @@
     <% @user_cars.each do |car| %>
       <li>
         <strong><%= car.name %></strong> - <%= car.model %>
-        <%= link_to 'Manage Bookings', bookings_path(car_id: car.id) %> 
+        <%= link_to 'Manage Bookings', bookings_path(car_id: car.id) %>
       </li>
     <% end %>
   </ul>
 <% else %>
   <p>You have no cars.</p>
 <% end %>
+
+
+
