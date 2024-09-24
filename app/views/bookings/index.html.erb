@@ -1,2 +1,28 @@
-<h1>Bookings#index</h1>
-<p>Find me in app/views/bookings/index.html.erb</p>
+<h1>My Bookings</h1>
+
+<h2>Your Booked Cars</h2>
+<% if @user_bookings.present? %>
+  <ul>
+    <% @user_bookings.each do |booking| %>
+      <li>
+        <strong><%= booking.car.name %></strong> - <%= booking.car.model %> (Booked on: <%= booking.booking_date.strftime("%B %d, %Y") if booking.booking_date %>)
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You have no bookings.</p>
+<% end %>
+
+<h2>Your Cars</h2>
+<% if @user_cars.present? %>
+  <ul>
+    <% @user_cars.each do |car| %>
+      <li>
+        <strong><%= car.name %></strong> - <%= car.model %>
+        <%= link_to 'Manage Bookings', bookings_path(car_id: car.id) %> 
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You have no cars.</p>
+<% end %>
