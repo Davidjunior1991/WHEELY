@@ -1,17 +1,39 @@
 class BookingsController < ApplicationController
+
   def index
-    @booking = Booking.find
+
   end
 
   def new
+    @booking = Booking.new
+    @car = Car.find(params[:car_id])
   end
 
   def create
+    @car = Car.find(params[:car_id])
+    @booking = Booking.new(booking_params)
+    @booking.car = @car
+
+    if @booking.save
+      redirect_to car_path(@car)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
-  def edit
+ def edit
   end
 
   def update
   end
+
+  private
+
+
+  def booking_params
+    params.require(:booking).permit(:date, :duration)
+  end
+
+
+
 end
