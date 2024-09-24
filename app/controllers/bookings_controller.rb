@@ -27,7 +27,7 @@ class BookingsController < ApplicationController
 
   def accept
     @booking.update(status: "approved")
-    @booking.car = true
+    @booking.car.booked = true
     redirect_to bookings_path, notice: "Booking approved."
   end
 
