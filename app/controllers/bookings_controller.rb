@@ -13,8 +13,10 @@ class BookingsController < ApplicationController
     @car = Car.find(params[:car_id])
     @booking = Booking.new(booking_params)
     @booking.car = @car
-
-    if @booking.save
+    @booking.user = current_user
+    @booking.status = "pending"
+    # raise
+    if @booking.save!
       redirect_to car_path(@car)
     else
       render :new, status: :unprocessable_entity
