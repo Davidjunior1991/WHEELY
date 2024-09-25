@@ -1,31 +1,4 @@
- <%# <style>
-        .navbar-nav {
-            flex-grow: 1;
-            justify-content: space-between;
-        }
-    </style> %>
 
-<nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnK4a2rVxhJyV8eFNRu7f3PTgkT8v40OwBTQ&s" width="70" height="50" alt="">
-  </a>
-        <a href="#" class="btn btn-primary ml-2">Sign Up</a>
-        <a href="#" class="btn btn-primary ml-2">Log in</a>
-   <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                More
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" <%= link_to 'Bookings', bookings_path %> ></a>
-                <a class="dropdown-item" <%= link_to 'Add a car', new_car_path %> </a>
-                <a class="dropdown-item" href="#">Log out</a>
-            </div>
-        </div>
-</nav>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <h1>Welcome to Wheely</h1>
 <p>"Get Rolling with Wheely!"</p>
@@ -37,4 +10,3 @@
 
 
 <%= link_to "Add a car", new_car_path, class:"btn btn-success" %>
-
