@@ -1,37 +1,64 @@
-<h1>My Bookings</h1>
-
-<h2>Cars i want to book</h2>
-<% if @bookings.present? %>
-  <ul>
-    <% @bookings.each do |booking| %>
-      <% if booking.user == current_user %>
-        <li>
-          <strong><%= booking.car.name %></strong> - <%= booking.status %> (Booked on: <%= booking.date if booking.date %>)
-        </li>
-      <% end %>
+<div class="bookings-container">
+  <div class="bookings-card">
+    <h1>Cars i've booked</h1>
+    <h2>Cars I Want to Book</h2>
+    <% if @bookings.present? %>
+      <ul class="booking-list">
+        <% @bookings.each do |booking| %>
+          <% if booking.user == current_user %>
+            <li class="booking-item">
+              <div class="booking-info">
+                <span class="car-name"><strong><%= booking.car.name %></strong></span>
+                <span class="booking-status">
+                  <% if booking.status == "approved" %>
+                    <span class="status-icon approved">✔️</span> <strong>Approved</strong>
+                    <span class="booking-date">(Booked on: <%= booking.date if booking.date %>)</span>
+                  <% elsif booking.status == "pending" %>
+                    <span class="status-icon pending">⏳</span> <strong>Pending</strong>
+                    <span class="booking-date">(Booked on: <%= booking.date if booking.date %>)</span>
+                  <% else %>
+                    <%= booking.status %>
+                    <span class="booking-date">(Booked on: <%= booking.date if booking.date %>)</span>
+                  <% end %>
+                </span>
+              </div>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="no-bookings">You have no bookings.</p>
     <% end %>
-  </ul>
-<% else %>
-  <p>You have no bookings.</p>
-<% end %>
+  </div>
 
-<h2>Cars im booking out</h2>
-<% if @bookings.present? %>
-  <ul>
-    <% @bookings.each do |booking| %>
-      <% if booking.car.user == current_user %>
-        <li>
-          <strong><%= booking.car.name %></strong> - <%= booking.car.category %>
-          <% if booking.status == "pending" %>
-            <%= link_to "ACCEPT", accept_booking_path(booking), data: { turbo_method: :patch }  %>
-            <%= link_to "DECLINE", decline_booking_path(booking), data: { turbo_method: :patch } %>
-            <% else %>
-            <%= booking.status %>
-            <% end %>
-        </li>
-      <% end %>
+  <div class="bookings-card">
+    <h1>Cars I'm Booking Out</h1>
+    <% if @bookings.present? %>
+      <ul class="booking-list">
+        <% @bookings.each do |booking| %>
+          <% if booking.car.user == current_user %>
+            <li class="booking-item">
+              <div class="booking-info">
+                <span class="car-name"><strong><%= booking.car.name %></strong></span>
+                <span class="car-category"><%= booking.car.category %></span>
+                <span class="booking-status">
+                  <% if booking.status == "pending" %>
+                    <span class="status-icon pending">⏳</span> <strong>Pending</strong>
+                    <%= link_to "ACCEPT", accept_booking_path(booking), class: "btn btn-success btn-small" %>
+                    <%= link_to "DECLINE", decline_booking_path(booking), class: "btn btn-danger btn-small" %>
+                  <% elsif booking.status == "approved" %>
+                    <span class="status-icon approved">✔️</span> <strong>Approved</strong>
+                  <% else %>
+                    <%= booking.status %>
+                  <% end %>
+                </span>
+              </div>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="no-bookings">You have no cars.</p>
     <% end %>
-  </ul>
-<% else %>
-  <p>You have no cars.</p>
-<% end %>
+  </div>
+</div>
