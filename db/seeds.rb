@@ -1,10 +1,10 @@
-
 # db/seeds.rb
+require 'open-uri'
 
 # Clear existing records
-User.destroy_all
-Car.destroy_all
 Booking.destroy_all
+Car.destroy_all
+User.destroy_all
 
 # Create Users
 users = User.create!([
@@ -13,14 +13,31 @@ users = User.create!([
   { email: 'ndi@example.com', password: 'password123' }
 ])
 puts "Users are created"
+
+# Define image URLs
+image_urls = {
+  'Model S' => 'https://images.unsplash.com/photo-1519440862171-af26cf8c2a85?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  'Civic' => 'https://images.unsplash.com/photo-1519440862171-af26cf8c2a85?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  'F-150' => 'https://images.unsplash.com/photo-1519440862171-af26cf8c2a85?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  'Corolla' => 'https://images.unsplash.com/photo-1519440862171-af26cf8c2a85?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  'Charger' => 'https://images.unsplash.com/photo-1519440862171-af26cf8c2a85?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+}
+
 # Create Cars
 cars = Car.create!([
-  { name: 'Model S', brand: 'Tesla', price_per_day: 200.0, category: 'Electric', user: users[0]},
+  { name: 'Model S', brand: 'Tesla', price_per_day: 200.0, category: 'Electric', user: users[0] },
   { name: 'Civic', brand: 'Honda', price_per_day: 50.0, category: 'Sedan', user: users[1] },
   { name: 'F-150', brand: 'Ford', price_per_day: 70.0, category: 'Truck', user: users[2] },
   { name: 'Corolla', brand: 'Toyota', price_per_day: 40.0, category: 'Sedan', user: users[0] },
   { name: 'Charger', brand: 'Dodge', price_per_day: 90.0, category: 'Muscle', user: users[1] }
 ])
+puts "Cars are created"
+
+# Attach photos to cars
+cars.each do |car|
+  car.photo.attach(io: URI.open(image_urls[car.name]), filename: "#{car.name.downcase}.jpg", content_type: 'image/jpg')
+end
+puts "Photos are attached to cars"
 
 # Create Bookings
 Booking.create!([

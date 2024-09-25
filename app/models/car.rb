@@ -5,4 +5,5 @@ class Car < ApplicationRecord
   validates :brand, presence: true
   validates :price_per_day, presence: true
   validates :category, presence: true
+  has_one_attached :photo
 end
