@@ -1,8 +1,8 @@
-<div class="container">
+<%# <div class="container"> %>
   <h1 class="welcome-title">Welcome to Wheely</h1>
   <p class="welcome-subtitle">"Get Rolling with Wheely!"</p>
 
-  <%= link_to "Add a car", new_car_path, class: "btn btn-book" %>
+  <%= link_to "Add a car", new_car_path, class: "btn-home" %>
 
   <div class="cars-container">
       <% @cars.each do |car| %>
@@ -21,4 +21,4 @@
     <% end %>
         <% end %>
   </div>
-</div>
+<%# </div> %>
