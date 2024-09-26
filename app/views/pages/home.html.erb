@@ -1,9 +1,8 @@
 <%# <div class="container"> %>
+  <h1 class="welcome-title">Welcome to Wheely</h1>
+  <p class="welcome-subtitle">"Get Rolling with Wheely!"</p>
 
-  <h1>Welcome to Wheely</h1>
-  <p>"Get Rolling with Wheely!"</p>
-
-  <%= link_to "Add a car", new_car_path, class:"btn btn-success" %>
+  <%= link_to "Add a car", new_car_path, class: "btn-home" %>
 
   <div class="cars-container">
       <% @cars.each do |car| %>
@@ -15,7 +14,7 @@
           <h2><%= car.name %></h2>
 
         <h2 class="car-trip-pricing">£ <%= car.price_per_day %></h2>
-        
+
 
       </div>
     </div>
