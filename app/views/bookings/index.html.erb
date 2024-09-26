@@ -1,13 +1,13 @@
 <div class="bookings-container">
   <div class="bookings-card">
-    <h1>Cars i've booked</h1>
-    <h2>Cars I Want to Book</h2>
+    <h1>Cars I've Booked</h1>
     <% if @bookings.present? %>
       <ul class="booking-list">
         <% @bookings.each do |booking| %>
           <% if booking.user == current_user %>
             <li class="booking-item">
               <div class="booking-info">
+                <%= cl_image_tag booking.car.photo.key, height: 100, width: 100, crop: :fill %>
                 <span class="car-name"><strong><%= booking.car.name %></strong></span>
                 <span class="booking-status">
                   <% if booking.status == "approved" %>
@@ -16,9 +16,16 @@
                   <% elsif booking.status == "pending" %>
                     <span class="status-icon pending">⏳</span> <strong>Pending</strong>
                     <span class="booking-date">(Booked on: <%= booking.date if booking.date %>)</span>
+                  <% elsif booking.status == "declined" %>
+                    <span class="status-icon declined">❌</span> <strong>Declined</strong>
+                    <span class="booking-date">(Booked on: <%= booking.date if booking.date %>)</span>
                   <% else %>
                     <%= booking.status %>
                     <span class="booking-date">(Booked on: <%= booking.date if booking.date %>)</span>
+                  <% end %>
+
+                  <% if booking.status == "declined" %>
+                    <span class="delete-icon">❌</span>
                   <% end %>
                 </span>
               </div>
@@ -39,6 +46,7 @@
           <% if booking.car.user == current_user %>
             <li class="booking-item">
               <div class="booking-info">
+                <%= cl_image_tag booking.car.photo.key, height: 100, width: 100, crop: :fill %>
                 <span class="car-name"><strong><%= booking.car.name %></strong></span>
                 <span class="car-category"><%= booking.car.category %></span>
                 <span class="booking-status">
@@ -48,8 +56,14 @@
                     <%= link_to "DECLINE", decline_booking_path(booking), class: "btn btn-danger btn-small" %>
                   <% elsif booking.status == "approved" %>
                     <span class="status-icon approved">✔️</span> <strong>Approved</strong>
+                  <% elsif booking.status == "declined" %>
+                    <span class="status-icon declined">❌</span> <strong>Declined</strong>
                   <% else %>
                     <%= booking.status %>
+                  <% end %>
+
+                  <% if booking.status == "declined" %>
+                    <span class="delete-icon">❌</span>
                   <% end %>
                 </span>
               </div>
