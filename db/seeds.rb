@@ -16,11 +16,11 @@ puts "Users are created"
 
 # Define image URLs
 image_urls = {
-  'Model S' => 'https://images.unsplash.com/photo-1519440862171-af26cf8c2a85?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'Civic' => 'https://images.unsplash.com/photo-1519440862171-af26cf8c2a85?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'F-150' => 'https://images.unsplash.com/photo-1519440862171-af26cf8c2a85?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'Corolla' => 'https://images.unsplash.com/photo-1519440862171-af26cf8c2a85?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'Charger' => 'https://images.unsplash.com/photo-1519440862171-af26cf8c2a85?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  'Model S' => 'https://s1.cdn.autoevolution.com/images/gallery/TESLA-MOTORS-Model-S-4693_74.jpg',
+  'Civic' => 'https://s3-ap-southeast-1.amazonaws.com/motoristprod/editors/images/1684977200590-civicfd-1_52916231072_o.jpg',
+  'F-150' => 'https://images.hgmsites.net/hug/2018-ford-f-150_100650676_h.jpg',
+  'Corolla' => 'https://fotos.perfil.com/2022/06/03/toyota-corolla-1366408.jpg',
+  'Charger' => 'https://www.edmunds.com/assets/m/cs/bltf884680096ae8ddd/6393e547bed42e2d4903d5be/2023_Dodge_Charger_Scat_Pack_White_Front_Quarter_View_1600.jpg'
 }
 
 # Create Cars
