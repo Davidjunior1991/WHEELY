@@ -1,12 +1,23 @@
+<%# <div class="container"> %>
 
+  <h1>Welcome to Wheely</h1>
+  <p>"Get Rolling with Wheely!"</p>
 
-<h1>Welcome to Wheely</h1>
-<p>"Get Rolling with Wheely!"</p>
+  <%= link_to "Add a car", new_car_path, class:"btn btn-success" %>
 
-<% @cars.each do |car| %>
-<ul><li><%=link_to car.name, car_path(car) %></li>
-</ul>
-<% end %>
+  <div class="cars-container">
+      <% @cars.each do |car| %>
 
-
-<%= link_to "Add a car", new_car_path, class:"btn btn-success" %>
+    <div class="car-trip">
+      <%= cl_image_tag car.photo.key %>
+      <div class="car-trip-infos">
+        <div>
+          <h2><%= car.name %></h2>
+          <p>Short description here!</p>
+        </div>
+        <h2 class="car-trip-pricing">£ <%= car.price_per_day %></h2>
+      </div>
+    </div>
+        <% end %>
+  </div>
+<%# </div> %>
