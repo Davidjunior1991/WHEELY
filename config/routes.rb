@@ -22,8 +22,8 @@ Rails.application.routes.draw do
   end
   resources :bookings, only: [:index, :edit, :update] do
     member do
-      patch :accept
-      patch :decline
+      get :accept
+      get :decline
     end
   end
 
