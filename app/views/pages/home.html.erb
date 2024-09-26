@@ -7,17 +7,19 @@
 
   <div class="cars-container">
       <% @cars.each do |car| %>
-
+<%= link_to car_path(car) do %>
     <div class="car-trip">
       <%= cl_image_tag car.photo.key %>
       <div class="car-trip-infos">
-        <div>
+
           <h2><%= car.name %></h2>
-          <p>Short description here!</p>
-        </div>
+
         <h2 class="car-trip-pricing">£ <%= car.price_per_day %></h2>
+        
+
       </div>
     </div>
+    <% end %>
         <% end %>
   </div>
 <%# </div> %>
