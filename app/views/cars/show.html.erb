@@ -1,7 +1,38 @@
+<div class="show-car-container">
+  <div class="content-show">
+  <div class="img-show">
+    <%=  cl_image_tag @car.photo.key, height: 300, width: 300, crop: :fill, class:"pic"%>
+  </div>
 
-<%= @car.name %>
-<%= cl_image_tag @car.photo.key, height: 300, width: 400, crop: :fill %>
+  <div class="info-show">
+    <h1 class="car-name"><%= @car.name %></h1>
+    <h3 class="car-category"><%= @car.category %></h3>
+    <h3 class="car-category"><%= "$#{@car.price_per_day}" %></h3>
+    <h3 class="car-category"><%= @car.brand %></h3>
+    <h3 class="car-category"><%= @car.user.email %></h3>
+  </div>
+</div>
 <hr>
 <% unless @car.user == current_user %>
   <%= link_to "create booking", new_car_booking_path(@car), class:"btn btn-success" %>
 <% end %>
+
+<div class="booking-new">
+  <%= form_with model: [@car, Booking.new], local: true do |form| %>
+    <div>
+      <%= form.label :date %>
+      <%= form.date_select :date %>
+    </div>
+    <div>
+      <%= form.label :duration %>
+      <%= form.number_field :duration %>
+    </div>
+
+
+
+    <div>
+      <%= form.submit 'Create Booking' %>
+    </div>
+  <% end %>
+  </div>
+</div>
