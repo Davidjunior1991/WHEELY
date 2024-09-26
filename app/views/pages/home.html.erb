@@ -5,15 +5,20 @@
   <%= link_to "Add a car", new_car_path, class: "btn btn-book" %>
 
   <div class="cars-container">
-    <% @cars.each do |car| %>
-      <div class="car-trip">
-        <%= cl_image_tag car.photo.key, class: "car-image" %>
-        <div class="car-trip-infos">
-          <h2 class="car-name"><%= car.name %></h2>
-          <p class="car-description">Short description here!</p>
-          <h2 class="car-trip-pricing">£ <%= car.price_per_day %></h2>
-        </div>
+      <% @cars.each do |car| %>
+<%= link_to car_path(car) do %>
+    <div class="car-trip">
+      <%= cl_image_tag car.photo.key %>
+      <div class="car-trip-infos">
+
+          <h2><%= car.name %></h2>
+
+        <h2 class="car-trip-pricing">£ <%= car.price_per_day %></h2>
+
+
       </div>
+    </div>
     <% end %>
+        <% end %>
   </div>
 </div>

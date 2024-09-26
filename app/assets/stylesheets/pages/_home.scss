@@ -52,42 +52,46 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: center;
-}
+  a {
+    text-decoration: none;
+  }
+  .car-trip {
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
 
-.car-trip {
-  background-color: #F5F7FA;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s;
-  width: 300px;
-}
+    img {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+    }
 
-.car-trip:hover {
-  transform: scale(1.05);
-}
 
-.car-image {
-}
+    h2 {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 0;
+    }
 
-.car-trip-infos {
-  padding: 20px;
-}
+    p {
+      font-size: 12px;
+      opacity: .7;
+      margin: 0;
+    }
 
-.car-name {
-  font-size: 1.8rem;
-  color: #1B263B;
-  margin: 0;
-}
 
-.car-description {
-  color: #415A77;
-  margin: 5px 0 10px;
-}
+    .car-trip-infos {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0 !important;
+    }
+    &:hover {
+      background-color: rgba(0,0,0,0.2);
+      transition: 0.1;
 
-.car-trip-pricing {
-  font-size: 1.5rem;
-  color: #e74c3c;
-  margin: 0;
+    }
+  }
+
 }
