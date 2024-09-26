@@ -25,11 +25,11 @@ image_urls = {
 
 # Create Cars
 cars = Car.create!([
-  { name: 'Model S', brand: 'Tesla', price_per_day: 200.0, category: 'Electric', user: users[0] },
-  { name: 'Civic', brand: 'Honda', price_per_day: 50.0, category: 'Sedan', user: users[1] },
-  { name: 'F-150', brand: 'Ford', price_per_day: 70.0, category: 'Truck', user: users[2] },
-  { name: 'Corolla', brand: 'Toyota', price_per_day: 40.0, category: 'Sedan', user: users[0] },
-  { name: 'Charger', brand: 'Dodge', price_per_day: 90.0, category: 'Muscle', user: users[1] }
+  { name: 'Model S', brand: 'Tesla', price_per_day: 200.0, category: 'Electric', user: users[0], address: "12 Market street, Graaff-Reinet" },
+  { name: 'Civic', brand: 'Honda', price_per_day: 50.0, category: 'Sedan', user: users[1], address: "12 Long street, Cape Town" },
+  { name: 'F-150', brand: 'Ford', price_per_day: 70.0, category: 'Truck', user: users[2], address: "17 Annandale Road, Diep River" },
+  { name: 'Corolla', brand: 'Toyota', price_per_day: 40.0, category: 'Sedan', user: users[0], address: "2 Upton Park, Mitchell's Plain" },
+  { name: 'Charger', brand: 'Dodge', price_per_day: 90.0, category: 'Muscle', user: users[1], address: "CTICC" }
 ])
 puts "Cars are created"
 
