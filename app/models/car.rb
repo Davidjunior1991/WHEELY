@@ -7,4 +7,13 @@ class Car < ApplicationRecord
   validates :category, presence: true
   has_one_attached :photo
   has_one_attached :image
+
+  def unavailable_dates
+    bookings.map do |booking|
+      {
+        from: booking.start_date,
+        to: booking.start_date + booking.duration.days
+      }
+    end
+  end
 end

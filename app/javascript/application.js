@@ -3,3 +3,7 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "@popperjs/core"
 import "bootstrap"
+import { application } from "./application";
+import FlatpickrController from "./controllers/flatpickr_controller";
+
+application.register("flatpickr", FlatpickrController);
