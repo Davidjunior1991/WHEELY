@@ -1,27 +1,75 @@
 .navbar-lewagon {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
   background: #0d1b2a;
-  height: 50px;
-  position: sticky; 
+  height: 60px;
+  position: sticky;
   top: 0;
   z-index: 1000;
+  padding: 0 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s, box-shadow 0.3s;
+}
 
+.navbar-lewagon:hover {
+  background: #1b2531;
 }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
 
-
 .navbar-lewagon .navbar-brand img {
-  height: 44px;
-  font-size: 40px;
-    width: 44px;
-    border-radius: 50%;
-    margin: 1rem;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin: 0.5rem;
+  transition: transform 0.2s;
 }
 
-.navbar-lewagon .container-fluid{
-  margin: 0px;
-  padding: 0px;
+.navbar-lewagon .navbar-brand img:hover {
+  transform: scale(1.1);
+}
+
+.navbar-lewagon .container-fluid {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-lewagon .nav-item {
+  margin: 0 15px;
+}
+
+.navbar-lewagon .nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+.navbar-lewagon .nav-link:hover {
+  color: #f0a500;
+  text-shadow: 0 0 5px rgba(240, 165, 0, 0.5);
+}
+
+.navbar-lewagon .dropdown-item {
+  transition: background 0.3s;
+}
+
+.navbar-lewagon .dropdown-item:hover {
+  background-color: rgba(240, 165, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .navbar-lewagon {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .navbar-lewagon .nav-item {
+    margin: 5px 0;
+    text-align: center;
+  }
 }
