@@ -15,15 +15,17 @@ class CarsController < ApplicationController
     if @car.save
       redirect_to car_path(@car)
     else
-    render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
 
     end
   end
 
+  def index
+  end
+  
   private
 
   def car_params
     params.require(:car).permit(:name, :brand, :category, :price_per_day, :photo)
   end
-
 end
