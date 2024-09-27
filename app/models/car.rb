@@ -14,4 +14,13 @@ class Car < ApplicationRecord
                   using: { tsearch: { prefix: true } }
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+
+  def unavailable_dates
+    bookings.map do |booking|
+      {
+        from: booking.date,
+        to: booking.date + booking.duration.days
+      }
+    end
+  end
 end
