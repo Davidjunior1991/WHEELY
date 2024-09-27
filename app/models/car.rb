@@ -13,8 +13,8 @@ class Car < ApplicationRecord
   def unavailable_dates
     bookings.map do |booking|
       {
-        from: booking.start_date,
-        to: booking.start_date + booking.duration.days
+        from: booking.date,
+        to: booking.date + booking.duration.days
       }
     end
   end

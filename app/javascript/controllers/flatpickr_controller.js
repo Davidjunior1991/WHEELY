@@ -1,15 +1,17 @@
 import { Controller } from "@hotwired/stimulus";
 import flatpickr from "flatpickr";
 
+
 export default class extends Controller {
-  static targets = ["startDate"];
+  static values = {
+    unavailable: Array
+  }
+
 
   connect() {
-    const unavailableDates = JSON.parse(this.startDateTarget.dataset.unavailable);
-
-    flatpickr(this.startDateTarget, {
+    flatpickr(this.element, {
       dateFormat: "Y-m-d",
-      disable: unavailableDates,
+      disable: this.unavailableValue,
       minDate: "today",
     });
   }

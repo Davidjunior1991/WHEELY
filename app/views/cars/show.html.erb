@@ -18,8 +18,8 @@
   <% unless @car.user == current_user %>
     <div class="booking-new">
       <h2>Book This Car</h2>
-      <%= simple_form_for @booking do |f| %>
-        <%= f.input :start_date, as: :string, input_html: { data: { controller: "flatpickr", flatpickr_target: "startDate", unavailable: @unavailable_dates.to_json } } %>
+      <%= simple_form_for [@car, Booking.new] do |f| %>
+        <%= f.input :date, as: :string, input_html: { data: { controller: "flatpickr", flatpickr_unavailable_value: @car.unavailable_dates } } %>
         <%= f.input :duration %>
         <%= f.submit %>
       <% end %>
