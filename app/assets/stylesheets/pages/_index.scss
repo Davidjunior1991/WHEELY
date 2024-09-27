@@ -45,8 +45,10 @@ body {
   margin-bottom: 10px;
   text-transform: uppercase;
   background: linear-gradient(90deg, #1B263B, #415A77);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
+  background-color: white;
+  margin-left: 2rem
 }
 
 .car-category, .car-price, .car-brand, .car-owner {
