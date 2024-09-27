@@ -7,6 +7,7 @@ class Car < ApplicationRecord
   validates :category, presence: true
   has_one_attached :photo
   has_one_attached :image
+  has_many :ratings, dependent: :destroy
 
   include PgSearch::Model
   pg_search_scope :search_by_name_brand_and_category,
@@ -14,4 +15,12 @@ class Car < ApplicationRecord
                   using: { tsearch: { prefix: true } }
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+
+  def average_rating
+    average = 0
+    ratings.each do |rating|
+      average += rating.score
+    end
+    return average.fdiv(ratings.count)
+  end
 end

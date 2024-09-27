@@ -36,3 +36,12 @@
     </div>
   <% end %>
 </div>
+<%= form_with model: [ @car, Rating.new ], local: true do |form| %>
+  <div>
+    <%= form.label :score, 'Rate this car:' %>
+    <%= form.select :score, (1..5).to_a %>
+  </div>
+  <%= form.submit 'Submit Rating' %>
+<% end %>
+
+<p>Average Rating: <%= @car.average_rating %></p>

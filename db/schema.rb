@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_26_151015) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_27_102219) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,10 +63,21 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_26_151015) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "booked"
-    t.string "address"
     t.float "latitude"
     t.float "longitude"
+    t.string "address"
     t.index ["user_id"], name: "index_cars_on_user_id"
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.bigint "car_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "score", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id", "user_id"], name: "index_ratings_on_car_id_and_user_id", unique: true
+    t.index ["car_id"], name: "index_ratings_on_car_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -86,4 +97,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_26_151015) do
   add_foreign_key "bookings", "cars"
   add_foreign_key "bookings", "users"
   add_foreign_key "cars", "users"
+  add_foreign_key "ratings", "cars"
+  add_foreign_key "ratings", "users"
 end
