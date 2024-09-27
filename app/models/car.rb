@@ -23,4 +23,13 @@ class Car < ApplicationRecord
     end
     return average.fdiv(ratings.count)
   end
+  def unavailable_dates
+    bookings.map do |booking|
+      {
+        from: booking.date,
+        to: booking.date + booking.duration.days
+      }
+    end
+
+  end
 end
