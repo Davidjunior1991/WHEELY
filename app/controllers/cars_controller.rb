@@ -22,7 +22,7 @@ class CarsController < ApplicationController
 
   def index
   end
-  
+
   private
 
   def car_params
