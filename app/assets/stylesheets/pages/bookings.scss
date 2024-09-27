@@ -4,7 +4,7 @@
   gap: 20px;
   justify-content: space-between;
   padding: 30px;
-  background-color: #f5f7fa;
+  // background-color: #f5f7fa;
 }
 
 /* Booking Card Styling */
@@ -15,6 +15,7 @@
   border-radius: 12px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
+  border: 2px solid #415A77;
 }
 
 .bookings-card:hover {
@@ -71,6 +72,7 @@ h2 {
   font-size: 1.2rem;
   color: #34495e;
   flex: 1;
+  background: white;
 }
 
 .booking-status {
