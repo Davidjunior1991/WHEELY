@@ -1,6 +1,6 @@
 <h1>Create a new Booking</h1>
 
-<%= simple_form_for [@car @booking] do |f| %>
+<%= simple_form_for [@car, @booking] do |f| %>
   <%= f.input :start_date, as: :string, input_html: { id: "start-date", data: { unavailable: @unavailable_dates } } %>
   <%= f.input :duration %>
   <%= f.submit %>
