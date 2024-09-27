@@ -1,23 +1,23 @@
 <div class="show-car-container">
-  <div class="content-show">
+  <div class="content-show card">
     <div class="img-show">
       <%= cl_image_tag @car.photo.key, height: 300, width: 300, crop: :fill, class: "pic" %>
     </div>
 
     <div class="info-show">
       <h1 class="car-name"><%= @car.name %></h1>
-      <h3 class="car-category"><strong>Category:</strong> <%= @car.category %></h3>
-      <h3 class="car-price"><strong>Price per Day:</strong> <%= "$#{@car.price_per_day}" %></h3>
-      <h3 class="car-brand"><strong>Brand:</strong> <%= @car.brand %></h3>
-      <h3 class="car-owner"><strong>Owner:</strong> <%= @car.user.email %></h3>
+      <h3 class="car-category"><i class="fas fa-tag"></i> <strong>Category:</strong> <%= @car.category %></h3>
+      <h3 class="car-price"><i class="fas fa-dollar-sign"></i> <strong>Price per Day:</strong> <%= "$#{@car.price_per_day}" %></h3>
+      <h3 class="car-brand"><i class="fas fa-car"></i> <strong>Brand:</strong> <%= @car.brand %></h3>
+      <h3 class="car-owner"><i class="fas fa-user"></i> <strong>Owner:</strong> <%= @car.user.email %></h3>
     </div>
   </div>
 
   <hr>
 
   <% unless @car.user == current_user %>
-    <div class="booking-new">
-      <h2>Book This Car</h2>
+    <div class="booking-new card">
+      <h2><i class="fas fa-calendar-check"></i> Book This Car</h2>
       <%= form_with model: [@car, Booking.new], local: true do |form| %>
         <div class="form-group">
           <%= form.label :date, "Select Date" %>
@@ -35,13 +35,117 @@
       <% end %>
     </div>
   <% end %>
-</div>
-<%= form_with model: [ @car, Rating.new ], local: true do |form| %>
-  <div>
-    <%= form.label :score, 'Rate this car:' %>
-    <%= form.select :score, (1..5).to_a %>
-  </div>
-  <%= form.submit 'Submit Rating' %>
-<% end %>
 
-<p>Average Rating: <%= @car.average_rating %></p>
+  <div class="rating-container card">
+    <h2><i class="fas fa-star"></i> Rate This Car</h2>
+    <%= form_with model: [@car, Rating.new], local: true do |form| %>
+      <div class="form-group">
+        <%= form.label :score, 'Rate this car:' %>
+        <%= form.select :score, (1..5).to_a, {}, class: "rating-select" %>
+      </div>
+      <%= form.submit 'Submit Rating', class: "btn btn-book" %>
+    <% end %>
+    <p><strong>Average Rating:</strong> <%= @car.average_rating %></p>
+  </div>
+</div>
+
+<style>
+  body {
+    background-color: #f9f9f9;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .show-car-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+  }
+
+  .content-show,
+  .booking-new,
+  .rating-container {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    padding: 30px;
+    display: flex;
+    align-items: flex-start;
+    transition: transform 0.2s;
+  }
+
+  .content-show:hover,
+  .booking-new:hover,
+  .rating-container:hover {
+    transform: translateY(-5px);
+  }
+
+  .img-show {
+    flex: 0 0 300px;
+    margin-right: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .info-show {
+    flex: 1;
+  }
+
+  h1.car-name {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    color: #666;
+    margin: 5px 0;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    background-color: #415A77;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .btn:hover {
+    background-color: #778DA9;
+  }
+
+  .rating-select {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%;
+  }
+
+  .fas {
+    margin-right: 8px;
+    color: #007BFF;
+
+  @media (max-width: 768px) {
+    .content-show {
+      flex-direction: column;
+      align-items: center;
+    }
+    .img-show {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  }
+</style>
