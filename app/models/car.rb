@@ -10,6 +10,8 @@ class Car < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :search_by_name_brand_and_category,
-    against: [ :name, :brand, :category ],
-    using: { tsearch: {prefix: true}}
+                  against: [ :name, :brand, :category ],
+                  using: { tsearch: { prefix: true } }
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
 end
